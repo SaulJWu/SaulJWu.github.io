@@ -190,23 +190,23 @@ module.exports = {
         hm: '503f098e7e5b3a5b5d8c5fc2938af002',
       },
     ],
-    [
-      'vuepress-plugin-comment', // 评论
-      // {
-      //   choosen: 'valine',
-      //   options: {
-      //     el: '#valine-vuepress-comment',
-      //     appId: 'qnS1jobNF7CROIQ0XYWBnVOH-gzGzoHsz',
-      //     appKey: 'LIKa0ePqFMkglQfOkN0JNK6c',
-      //     avatar: 'monsterid'
-      //   }
-      // },
+    // [
+    //   'vuepress-plugin-comment', // 评论
+    //   // {
+    //   //   choosen: 'valine',
+    //   //   options: {
+    //   //     el: '#valine-vuepress-comment',
+    //   //     appId: 'qnS1jobNF7CROIQ0XYWBnVOH-gzGzoHsz',
+    //   //     appKey: 'LIKa0ePqFMkglQfOkN0JNK6c',
+    //   //     avatar: 'monsterid'
+    //   //   }
+    //   // },
       {
         choosen: 'gitalk',
         options: {
           clientID: '824a431cf98a559a11b6',
           clientSecret: '7687e6a6e8a1ada021236a4dde0cd862e0946f70',
-          repo: 'sauljwu.github.io', // GitHub 仓库
+          repo: 'blog-gitalk-comment', // GitHub 仓库
           owner: 'SaulJWu', // GitHub仓库所有者
           admin: ['SaulJWu'], // 对仓库有写权限的人
           // distractionFreeMode: true,
