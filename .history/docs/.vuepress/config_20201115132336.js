@@ -2,7 +2,8 @@ const nav = require('./config/nav.js')
 
 module.exports = {
   title: "Saul's blog",
-  description: '读书百遍其义自见，学习亦是如此，人生亦是如此。', // 描述,以 <meta> 标签渲染到页面html中
+  description:
+    'web前端技术博客,简洁至上,专注web前端学习与总结。JavaScript,js,ES6,TypeScript,vue,python,css3,html5,Node,git,github等技术文章。', // 描述,以 <meta> 标签渲染到页面html中
   // base: '/', // '/<github仓库名>/'， 默认'/'
   head: [
     // 注入到页面<head> 中的标签，格式[tagName, { attrName: attrValue }, innerHTML?]
@@ -11,7 +12,8 @@ module.exports = {
       'meta',
       {
         name: 'keywords',
-        content: '读书百遍其义自见，学习亦是如此，人生亦是如此。',
+        content:
+          '前端博客,个人技术博客,前端,前端开发,前端框架,web前端,前端面试题,技术文档,学习,面试,JavaScript,js,ES6,TypeScript,vue,python,css3,html5,Node,git,github,markdown',
       },
     ],
     ['meta', { name: 'baidu-site-verification', content: '7F55weZDDc' }], // 百度统计的站点拥有者验证
@@ -35,7 +37,7 @@ module.exports = {
     lastUpdated: '上次更新', // 更新的时间，及前缀文字   string | boolean (取值为git提交时间)
     docsDir: 'docs', // 编辑的文件夹
     editLinks: true, // 启用编辑
-    editLinkText: '帮我改善此页面',
+    editLinkText: '编辑',
 
     //*** 以下配置是Vdoing主题改动和新增的配置 ***//
 
@@ -58,11 +60,11 @@ module.exports = {
     // ],
     // contentBgStyle: 1, // 文章内容块的背景风格，默认无. 1 => 方格 | 2 => 横线 | 3 => 竖线 | 4 => 左斜线 | 5 => 右斜线 | 6 => 点状
 
-    // updateBar: {
-    //   // 最近更新栏
-    //   showToArticle: true, // 显示到文章页底部，默认true
-    //   moreArticle: '/archives', // “更多文章”跳转的页面，默认'/archives'
-    // },
+    updateBar: {
+      // 最近更新栏
+      showToArticle: true, // 显示到文章页底部，默认true
+      moreArticle: '/archives', // “更多文章”跳转的页面，默认'/archives'
+    },
     // sidebarOpen: false, // 初始状态是否打开侧边栏，默认true
     // pageButton: false, // 是否显示快捷翻页按钮，默认true
 

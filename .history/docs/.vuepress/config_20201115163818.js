@@ -35,7 +35,7 @@ module.exports = {
     lastUpdated: '上次更新', // 更新的时间，及前缀文字   string | boolean (取值为git提交时间)
     docsDir: 'docs', // 编辑的文件夹
     editLinks: true, // 启用编辑
-    editLinkText: '帮我改善此页面',
+    editLinkText: '编辑',
 
     //*** 以下配置是Vdoing主题改动和新增的配置 ***//
 

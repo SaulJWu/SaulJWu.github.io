@@ -1,7 +1,7 @@
 const nav = require('./config/nav.js')
 
 module.exports = {
-  title: "Saul's blog",
+  title: "Saul's blog 23",
   description: '读书百遍其义自见，学习亦是如此，人生亦是如此。', // 描述,以 <meta> 标签渲染到页面html中
   // base: '/', // '/<github仓库名>/'， 默认'/'
   head: [
@@ -35,7 +35,7 @@ module.exports = {
     lastUpdated: '上次更新', // 更新的时间，及前缀文字   string | boolean (取值为git提交时间)
     docsDir: 'docs', // 编辑的文件夹
     editLinks: true, // 启用编辑
-    editLinkText: '帮我改善此页面',
+    editLinkText: '编辑',
 
     //*** 以下配置是Vdoing主题改动和新增的配置 ***//
 

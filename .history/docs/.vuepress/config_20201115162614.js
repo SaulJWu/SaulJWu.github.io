@@ -35,7 +35,7 @@ module.exports = {
     lastUpdated: '上次更新', // 更新的时间，及前缀文字   string | boolean (取值为git提交时间)
     docsDir: 'docs', // 编辑的文件夹
     editLinks: true, // 启用编辑
-    editLinkText: '帮我改善此页面',
+    editLinkText: '编辑',
 
     //*** 以下配置是Vdoing主题改动和新增的配置 ***//
 
@@ -58,11 +58,11 @@ module.exports = {
     // ],
     // contentBgStyle: 1, // 文章内容块的背景风格，默认无. 1 => 方格 | 2 => 横线 | 3 => 竖线 | 4 => 左斜线 | 5 => 右斜线 | 6 => 点状
 
-    // updateBar: {
-    //   // 最近更新栏
-    //   showToArticle: true, // 显示到文章页底部，默认true
-    //   moreArticle: '/archives', // “更多文章”跳转的页面，默认'/archives'
-    // },
+    updateBar: {
+      // 最近更新栏
+      showToArticle: true, // 显示到文章页底部，默认true
+      moreArticle: '/archives', // “更多文章”跳转的页面，默认'/archives'
+    },
     // sidebarOpen: false, // 初始状态是否打开侧边栏，默认true
     // pageButton: false, // 是否显示快捷翻页按钮，默认true
 
