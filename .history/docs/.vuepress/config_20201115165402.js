@@ -30,9 +30,9 @@ module.exports = {
     nav,
     sidebarDepth: 2, // 侧边栏显示深度，默认1，最大2（显示到h3标题）
     logo: '/img/logo.jpg', // 导航栏logo
-    repo: 'SaulJWu', // 导航栏右侧生成Github链接
+    repo: 'SaulJWu/vuepress-theme-vdoing', // 导航栏右侧生成Github链接
     searchMaxSuggestions: 10, // 搜索结果显示最大数
-    lastUpdated: '上次更新', // 更新的时间，及前缀文字   string | boolean (取值为git提交时间)
+    lastUpdated: '上次更新' | true, // 更新的时间，及前缀文字   string | boolean (取值为git提交时间)
     docsDir: 'docs', // 编辑的文件夹
     editLinks: true, // 启用编辑
     editLinkText: '帮我改善此页面',
@@ -190,42 +190,36 @@ module.exports = {
         hm: '503f098e7e5b3a5b5d8c5fc2938af002',
       },
     ],
-    [
-      'vuepress-plugin-comment', // 评论
-      // {
-      //   choosen: 'valine',
-      //   options: {
-      //     el: '#valine-vuepress-comment',
-      //     appId: 'qnS1jobNF7CROIQ0XYWBnVOH-gzGzoHsz',
-      //     appKey: 'LIKa0ePqFMkglQfOkN0JNK6c',
-      //     avatar: 'monsterid'
-      //   }
-      // },
-      {
-        choosen: 'gitalk',
-        options: {
-<<<<<<< HEAD
-          clientID: 'a6e1355287947096b88b',
-          clientSecret: 'f0e77d070fabfcd5af95bebb82b2d574d7248d71',
-          repo: 'blog-gitalk-comment', // GitHub 仓库
-=======
-          clientID: '824a431cf98a559a11b6',
-          clientSecret: '7687e6a6e8a1ada021236a4dde0cd862e0946f70',
-          repo: 'sauljwu.github.io', // GitHub 仓库
->>>>>>> master
-          owner: 'SaulJWu', // GitHub仓库所有者
-          admin: ['SaulJWu'], // 对仓库有写权限的人
-          // distractionFreeMode: true,
-          pagerDirection: 'last', // 'first'正序 | 'last'倒序
-          id:
-            '<%- (frontmatter.permalink || frontmatter.to.path).slice(-16) %>', //  页面的唯一标识,长度不能超过50
-          title: '「评论」<%- frontmatter.title %>', // GitHub issue 的标题
-          labels: ['Gitalk', 'Comment'], // GitHub issue 的标签
-          body:
-            '页面：<%- window.location.origin + (frontmatter.to.path || window.location.pathname) %>', // GitHub issue 的内容
-        },
-      },
-    ],
+    // [
+    //   'vuepress-plugin-comment', // 评论
+    //   // {
+    //   //   choosen: 'valine',
+    //   //   options: {
+    //   //     el: '#valine-vuepress-comment',
+    //   //     appId: 'qnS1jobNF7CROIQ0XYWBnVOH-gzGzoHsz',
+    //   //     appKey: 'LIKa0ePqFMkglQfOkN0JNK6c',
+    //   //     avatar: 'monsterid'
+    //   //   }
+    //   // },
+    //   {
+    //     choosen: 'gitalk',
+    //     options: {
+    //       clientID: 'a6e1355287947096b88b',
+    //       clientSecret: 'f0e77d070fabfcd5af95bebb82b2d574d7248d71',
+    //       repo: 'blog-gitalk-comment', // GitHub 仓库
+    //       owner: 'SaulJWu', // GitHub仓库所有者
+    //       admin: ['SaulJWu'], // 对仓库有写权限的人
+    //       // distractionFreeMode: true,
+    //       pagerDirection: 'last', // 'first'正序 | 'last'倒序
+    //       id:
+    //         '<%- (frontmatter.permalink || frontmatter.to.path).slice(-16) %>', //  页面的唯一标识,长度不能超过50
+    //       title: '「评论」<%- frontmatter.title %>', // GitHub issue 的标题
+    //       labels: ['Gitalk', 'Comment'], // GitHub issue 的标签
+    //       body:
+    //         '页面：<%- window.location.origin + (frontmatter.to.path || window.location.pathname) %>', // GitHub issue 的内容
+    //     },
+    //   },
+    // ],
     [
       '@vuepress/last-updated', // "上次更新"时间格式
       {
