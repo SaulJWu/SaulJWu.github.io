@@ -205,7 +205,7 @@ module.exports = {
         choosen: 'gitalk',
         options: {
           clientID: '824a431cf98a559a11b6',
-          clientSecret: '7687e6a6e8a1ada021236a4dde0cd862e0946f70',
+          clientSecret: 'c52d49ad13d55aa5cbb2c482509461f8e3413f9c',
           repo: 'sauljwu.github.io', // GitHub 仓库
           owner: 'SaulJWu', // GitHub仓库所有者
           admin: ['SaulJWu'], // 对仓库有写权限的人
