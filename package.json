@@ -2,6 +2,7 @@
   "name": "theme-vdoing-blog",
   "version": "1.0.0",
   "scripts": {
+    "push": "bash pushCode.sh",
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
     "deploy": "bash deploy.sh",
