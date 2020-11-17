@@ -2,7 +2,7 @@ const nav = require('./config/nav.js')
 
 module.exports = {
   title: "Saul's blog",
-  description: '读书百遍其义自见，人生亦是如此。', // 描述,以 <meta> 标签渲染到页面html中
+  description: '读书百遍其义自见，学习亦是如此，人生亦是如此。', // 描述,以 <meta> 标签渲染到页面html中
   // base: '/', // '/<github仓库名>/'， 默认'/'
   head: [
     // 注入到页面<head> 中的标签，格式[tagName, { attrName: attrValue }, innerHTML?]
@@ -204,9 +204,15 @@ module.exports = {
       {
         choosen: 'gitalk',
         options: {
+<<<<<<< HEAD
+          clientID: 'a6e1355287947096b88b',
+          clientSecret: 'f0e77d070fabfcd5af95bebb82b2d574d7248d71',
+          repo: 'blog-gitalk-comment', // GitHub 仓库
+=======
           clientID: '824a431cf98a559a11b6',
           clientSecret: '7687e6a6e8a1ada021236a4dde0cd862e0946f70',
           repo: 'sauljwu.github.io', // GitHub 仓库
+>>>>>>> master
           owner: 'SaulJWu', // GitHub仓库所有者
           admin: ['SaulJWu'], // 对仓库有写权限的人
           // distractionFreeMode: true,
