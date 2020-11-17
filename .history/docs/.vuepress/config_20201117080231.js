@@ -2,7 +2,7 @@ const nav = require('./config/nav.js')
 
 module.exports = {
   title: "Saul's blog",
-  description: '读书百遍其义自见，人生亦是如此。', // 描述,以 <meta> 标签渲染到页面html中
+  description: '读书百遍其义自见，学习亦是如此，人生亦是如此。', // 描述,以 <meta> 标签渲染到页面html中
   // base: '/', // '/<github仓库名>/'， 默认'/'
   head: [
     // 注入到页面<head> 中的标签，格式[tagName, { attrName: attrValue }, innerHTML?]
