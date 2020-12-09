@@ -158,7 +158,7 @@ module.exports = {
         ], // String or Array
         copyMessage: '复制成功', // default is 'Copy successfully and then paste it for use.'
         duration: 1000, // prompt message display time.
-        showInMobile: true, // whether to display on the mobile side, default: false.
+        showInMobile: false, // whether to display on the mobile side, default: false.
       },
     ],
     [
