@@ -117,6 +117,14 @@ module.exports = {
   },
   plugins: [
     [
+      "sitemap",
+      {
+        hostname: "https://sauljwu.github.io/",
+        // 排除无实际内容的页面
+        exclude: ["/404.html"],
+      },
+    ],
+    [
       (require("./plugins/love-me"),
       {
         // 鼠标点击爱心特效

@@ -28,6 +28,8 @@
     "yamljs": "^0.3.0"
   },
   "dependencies": {
-    "vuepress-plugin-comment": "^0.7.3"
+    "busuanzi.pure.js": "^1.0.3",
+    "vuepress-plugin-comment": "^0.7.3",
+    "vuepress-plugin-sitemap": "^2.3.1"
   }
 }
