@@ -14,7 +14,7 @@ module.exports = {
         content: "读书百遍其义自见，学习亦是如此，人生亦是如此。",
       },
     ],
-    ["meta", { name: "baidu-site-verification", content: "qs7vaYoSzk" }], // 百度统计的站点拥有者验证
+    ["meta", { name: "baidu-site-verification", content: "code-qs7vaYoSzk" }], // 百度统计的站点拥有者验证
     ["meta", { name: "theme-color", content: "#722ED1" }], // 移动浏览器主题颜色
     // ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'}], // 移动端阻止页面缩放
   ],
