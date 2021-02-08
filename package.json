@@ -4,7 +4,7 @@
   "scripts": {
     "push": "bash pushCode.sh",
     "dev": "vuepress dev docs",
-    "build": "vuepress build docs",
+    "build": "vuepress build docs docs && node utils/googlePush.js https://sauljwu.github.io/",
     "deploy": "bash deploy.sh",
     "editFm": "node utils/editFrontmatter.js",
     "baiduPush": "node utils/baiduPush.js https://sauljwu.github.io/ && bash baiduPush.sh",
