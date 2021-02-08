@@ -1,41 +1,41 @@
-const nav = require('./config/nav.js')
+const nav = require("./config/nav.js");
 
 module.exports = {
   title: "Saul's blog",
-  description: '读书百遍其义自见，人生亦是如此。', // 描述,以 <meta> 标签渲染到页面html中
+  description: "读书百遍其义自见，人生亦是如此。", // 描述,以 <meta> 标签渲染到页面html中
   // base: '/', // '/<github仓库名>/'， 默认'/'
   head: [
     // 注入到页面<head> 中的标签，格式[tagName, { attrName: attrValue }, innerHTML?]
-    ['link', { rel: 'icon', href: '/img/favicon.ico' }], //favicons，资源放在public文件夹
+    ["link", { rel: "icon", href: "/img/favicon.ico" }], //favicons，资源放在public文件夹
     [
-      'meta',
+      "meta",
       {
-        name: 'keywords',
-        content: '读书百遍其义自见，学习亦是如此，人生亦是如此。',
+        name: "keywords",
+        content: "读书百遍其义自见，学习亦是如此，人生亦是如此。",
       },
     ],
-    ['meta', { name: 'baidu-site-verification', content: '7F55weZDDc' }], // 百度统计的站点拥有者验证
-    ['meta', { name: 'theme-color', content: '#11a8cd' }], // 移动浏览器主题颜色
+    ["meta", { name: "baidu-site-verification", content: "7F55weZDDc" }], // 百度统计的站点拥有者验证
+    ["meta", { name: "theme-color", content: "#11a8cd" }], // 移动浏览器主题颜色
     // ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'}], // 移动端阻止页面缩放
   ],
   markdown: {
     lineNumbers: true, // 代码行号
   },
 
-  theme: 'vdoing', // 使用依赖包主题
+  theme: "vdoing", // 使用依赖包主题
   // theme: require.resolve('../../theme-vdoing'), // 使用本地主题
 
   themeConfig: {
     // 主题配置
     nav,
     sidebarDepth: 2, // 侧边栏显示深度，默认1，最大2（显示到h3标题）
-    logo: '/img/logo.jpg', // 导航栏logo
-    repo: 'SaulJWu', // 导航栏右侧生成Github链接
+    logo: "/img/logo.jpg", // 导航栏logo
+    repo: "SaulJWu", // 导航栏右侧生成Github链接
     searchMaxSuggestions: 10, // 搜索结果显示最大数
-    lastUpdated: '上次更新', // 更新的时间，及前缀文字   string | boolean (取值为git提交时间)
-    docsDir: 'docs', // 编辑的文件夹
+    lastUpdated: "上次更新", // 更新的时间，及前缀文字   string | boolean (取值为git提交时间)
+    docsDir: "docs", // 编辑的文件夹
     editLinks: true, // 启用编辑
-    editLinkText: '帮我改善此页面',
+    editLinkText: "帮我改善此页面",
 
     //*** 以下配置是Vdoing主题改动和新增的配置 ***//
 
@@ -66,33 +66,33 @@ module.exports = {
     // sidebarOpen: false, // 初始状态是否打开侧边栏，默认true
     // pageButton: false, // 是否显示快捷翻页按钮，默认true
 
-    sidebar: 'structuring', // 侧边栏  'structuring' | { mode: 'structuring', collapsable: Boolean} | 'auto' | 自定义    温馨提示：目录页数据依赖于结构化的侧边栏数据，如果你不设置为'structuring',将无法使用目录页
+    sidebar: "structuring", // 侧边栏  'structuring' | { mode: 'structuring', collapsable: Boolean} | 'auto' | 自定义    温馨提示：目录页数据依赖于结构化的侧边栏数据，如果你不设置为'structuring',将无法使用目录页
 
     author: {
       // 文章默认的作者信息，可在md文件中单独配置此信息 String | {name: String, link: String}
-      name: 'SaulJWu', // 必需
-      link: 'https://github.com/SaulJWu', // 可选的
+      name: "SaulJWu", // 必需
+      link: "https://github.com/SaulJWu", // 可选的
     },
     blogger: {
       // 博主信息，显示在首页侧边栏
       avatar:
-        'https://raw.githubusercontent.com/SaulJWu/images/main/20201114225611.jpg',
-      name: 'Saul.J.Wu',
-      slogan: '立身之本，不在高低。',
+        "https://raw.githubusercontent.com/SaulJWu/images/main/20201114225611.jpg",
+      name: "Saul.J.Wu",
+      slogan: "立身之本，不在高低。",
     },
     social: {
       // 社交图标，显示于博主信息栏和页脚栏
       // iconfontCssFile: '//at.alicdn.com/t/font_1678482_u4nrnp8xp6g.css', // 可选，阿里图标库在线css文件地址，对于主题没有的图标可自由添加
       icons: [
         {
-          iconClass: 'icon-youjian',
-          title: '发邮件',
-          link: 'mailto:Saul.J.Wu@outlook.com',
+          iconClass: "icon-youjian",
+          title: "发邮件",
+          link: "mailto:Saul.J.Wu@outlook.com",
         },
         {
-          iconClass: 'icon-github',
-          title: 'GitHub',
-          link: 'https://github.com/SaulJWu',
+          iconClass: "icon-github",
+          title: "GitHub",
+          link: "https://github.com/SaulJWu",
         },
         // {
         //   iconClass: 'icon-erji',
@@ -116,7 +116,7 @@ module.exports = {
     // }],
 
     [
-      'thirdparty-search',
+      "thirdparty-search",
       {
         // 可以添加第三方搜索链接的搜索框（原官方搜索框的参数仍可用）
         thirdparty: [
@@ -135,34 +135,34 @@ module.exports = {
           //   frontUrl: 'https://cn.vuejs.org/v2/api/#',
           // },
           {
-            title: '在Bing中搜索',
-            frontUrl: 'https://cn.bing.com/search?q=',
+            title: "在Bing中搜索",
+            frontUrl: "https://cn.bing.com/search?q=",
           },
           {
-            title: '通过百度搜索本站的',
-            frontUrl: 'https://www.baidu.com/s?wd=site%3ASaulJWu.com%20',
+            title: "通过百度搜索本站的",
+            frontUrl: "https://www.baidu.com/s?wd=site%3Asauljwu.github.io/%20",
           },
         ],
       },
     ],
 
-    'vuepress-plugin-baidu-autopush', // 百度自动推送
+    "vuepress-plugin-baidu-autopush", // 百度自动推送
 
     [
-      'one-click-copy',
+      "one-click-copy",
       {
         // 代码块复制按钮
         copySelector: [
           'div[class*="language-"] pre',
           'div[class*="aside-code"] aside',
         ], // String or Array
-        copyMessage: '复制成功', // default is 'Copy successfully and then paste it for use.'
+        copyMessage: "复制成功", // default is 'Copy successfully and then paste it for use.'
         duration: 1000, // prompt message display time.
         showInMobile: false, // whether to display on the mobile side, default: false.
       },
     ],
     [
-      'demo-block',
+      "demo-block",
       {
         // demo演示模块 https://github.com/xiguaxigua/vuepress-plugin-demo-block
         settings: {
@@ -176,22 +176,22 @@ module.exports = {
       },
     ],
     [
-      'vuepress-plugin-zooming', // 放大图片
+      "vuepress-plugin-zooming", // 放大图片
       {
-        selector: '.theme-vdoing-content img:not(.no-zoom)', // 排除class是no-zoom的图片
+        selector: ".theme-vdoing-content img:not(.no-zoom)", // 排除class是no-zoom的图片
         options: {
-          bgColor: 'rgba(0,0,0,0.6)',
+          bgColor: "rgba(0,0,0,0.6)",
         },
       },
     ],
     [
-      'vuepress-plugin-baidu-tongji', // 百度统计
+      "vuepress-plugin-baidu-tongji", // 百度统计
       {
-        hm: '503f098e7e5b3a5b5d8c5fc2938af002',
+        hm: "503f098e7e5b3a5b5d8c5fc2938af002",
       },
     ],
     [
-      'vuepress-plugin-comment', // 评论
+      "vuepress-plugin-comment", // 评论
       // {
       //   choosen: 'valine',
       //   options: {
@@ -202,30 +202,30 @@ module.exports = {
       //   }
       // },
       {
-        choosen: 'gitalk',
+        choosen: "gitalk",
         options: {
-          clientID: '824a431cf98a559a11b6',
-          clientSecret: 'c52d49ad13d55aa5cbb2c482509461f8e3413f9c',
-          repo: 'sauljwu.github.io', // GitHub 仓库
-          owner: 'SaulJWu', // GitHub仓库所有者
-          admin: ['SaulJWu'], // 对仓库有写权限的人
+          clientID: "824a431cf98a559a11b6",
+          clientSecret: "c52d49ad13d55aa5cbb2c482509461f8e3413f9c",
+          repo: "sauljwu.github.io", // GitHub 仓库
+          owner: "SaulJWu", // GitHub仓库所有者
+          admin: ["SaulJWu"], // 对仓库有写权限的人
           // distractionFreeMode: true,
-          pagerDirection: 'last', // 'first'正序 | 'last'倒序
+          pagerDirection: "last", // 'first'正序 | 'last'倒序
           id:
-            '<%- (frontmatter.permalink || frontmatter.to.path).slice(-16) %>', //  页面的唯一标识,长度不能超过50
-          title: '「评论」<%- frontmatter.title %>', // GitHub issue 的标题
-          labels: ['Gitalk', 'Comment'], // GitHub issue 的标签
+            "<%- (frontmatter.permalink || frontmatter.to.path).slice(-16) %>", //  页面的唯一标识,长度不能超过50
+          title: "「评论」<%- frontmatter.title %>", // GitHub issue 的标题
+          labels: ["Gitalk", "Comment"], // GitHub issue 的标签
           body:
-            '页面：<%- window.location.origin + (frontmatter.to.path || window.location.pathname) %>', // GitHub issue 的内容
+            "页面：<%- window.location.origin + (frontmatter.to.path || window.location.pathname) %>", // GitHub issue 的内容
         },
       },
     ],
     [
-      '@vuepress/last-updated', // "上次更新"时间格式
+      "@vuepress/last-updated", // "上次更新"时间格式
       {
         transformer: (timestamp, lang) => {
-          const moment = require('moment') // https://momentjs.com/
-          return moment(timestamp).format('YYYY/MM/DD, hh:mm:ss')
+          const moment = require("moment"); // https://momentjs.com/
+          return moment(timestamp).format("YYYY/MM/DD, hh:mm:ss");
         },
       },
     ],
@@ -238,4 +238,4 @@ module.exports = {
   //     }
   //   }
   // }
-}
+};
