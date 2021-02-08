@@ -1,49 +1,72 @@
 <template>
   <div class="footer">
-    <div
-      class="icons"
-      v-if="social && social.icons"
-    >
-      <a
-        :href="item.link"
-        :title="item.title"
-        :class="['iconfont', item.iconClass]"
-        v-for="(item, index) in social.icons"
-        :key="index"
-        target="_blank"
-      ></a>
+    <div>
+      <template>
+        <div class="busuanzi">
+          <span id="busuanzi_container_site_pv" style="display:none">
+            本站总访问量
+            <span id="busuanzi_value_site_pv"></span>次
+            <span class="post-meta-divider">|</span>
+          </span>
+          <span id="busuanzi_container_site_uv" style="display:none">
+            本站访客数
+            <span id="busuanzi_value_site_uv"></span>人
+          </span>
+        </div>
+      </template>
     </div>
+    <div>
+      <div class="icons" v-if="social && social.icons">
+        <a
+          :href="item.link"
+          :title="item.title"
+          :class="['iconfont', item.iconClass]"
+          v-for="(item, index) in social.icons"
+          :key="index"
+          target="_blank"
+        ></a>
+      </div>
 
-    <!--Vdoing主题遵循MIT协议，完全开源且免费。如果您对主题的修改并不大，希望您保留主题的链接。-->
-    Theme by
-    <a
-      href="https://github.com/xugaoyi/vuepress-theme-vdoing"
-      target="_blank"
-      title="本站主题"
-    >Vdoing</a>
-    <template v-if="footer">
-      | Copyright © {{ footer.createYear }}-{{ new Date().getFullYear() }}
-      <span
-        v-html="footer.copyrightInfo"
-      ></span>
-    </template>
+      <!--Vdoing主题遵循MIT协议，完全开源且免费。如果您对主题的修改并不大，希望您保留主题的链接。-->
+      Theme by
+      <a
+        href="https://github.com/xugaoyi/vuepress-theme-vdoing"
+        target="_blank"
+        title="本站主题"
+        >Vdoing</a
+      >
+      <template v-if="footer">
+        | Copyright © {{ footer.createYear }}-{{ new Date().getFullYear() }}
+        <span v-html="footer.copyrightInfo"></span>
+      </template>
+    </div>
   </div>
 </template>
 
 <script>
+const busuanzi = require("busuanzi.pure.js");
+
 export default {
   computed: {
-    social () {
-      return this.$themeConfig.social
+    social() {
+      return this.$themeConfig.social;
     },
-    footer () {
-      return this.$themeConfig.footer
-    }
-  }
-}
+    footer() {
+      return this.$themeConfig.footer;
+    },
+  },
+  watch: {
+    $route(to, from) {
+      if (to.path != from.path) {
+        script.fetch();
+      }
+      // console.log(to.path);
+    },
+  },
+};
 </script>
 
-<style lang='stylus'>
+<style lang="stylus">
 // $mobileSidebarWidth = $sidebarWidth * 0.82
 .footer
   padding 5rem 1.5rem 2.5rem
