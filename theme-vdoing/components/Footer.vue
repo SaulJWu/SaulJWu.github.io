@@ -1,6 +1,16 @@
 <template>
   <div class="footer">
-    <div>
+    <div class="icons" v-if="social && social.icons">
+      <a
+        :href="item.link"
+        :title="item.title"
+        :class="['iconfont', item.iconClass]"
+        v-for="(item, index) in social.icons"
+        :key="index"
+        target="_blank"
+      ></a>
+    </div>
+    <div class="busuanzi-box">
       <template>
         <div class="busuanzi">
           <span id="busuanzi_container_site_pv" style="display:none">
@@ -15,31 +25,18 @@
         </div>
       </template>
     </div>
-    <div>
-      <div class="icons" v-if="social && social.icons">
-        <a
-          :href="item.link"
-          :title="item.title"
-          :class="['iconfont', item.iconClass]"
-          v-for="(item, index) in social.icons"
-          :key="index"
-          target="_blank"
-        ></a>
-      </div>
-
-      <!--Vdoing主题遵循MIT协议，完全开源且免费。如果您对主题的修改并不大，希望您保留主题的链接。-->
-      Theme by
-      <a
-        href="https://github.com/xugaoyi/vuepress-theme-vdoing"
-        target="_blank"
-        title="本站主题"
-        >Vdoing</a
-      >
-      <template v-if="footer">
-        | Copyright © {{ footer.createYear }}-{{ new Date().getFullYear() }}
-        <span v-html="footer.copyrightInfo"></span>
-      </template>
-    </div>
+    <!--Vdoing主题遵循MIT协议，完全开源且免费。如果您对主题的修改并不大，希望您保留主题的链接。-->
+    Theme by
+    <a
+      href="https://github.com/xugaoyi/vuepress-theme-vdoing"
+      target="_blank"
+      title="本站主题"
+      >Vdoing</a
+    >
+    <template v-if="footer">
+      | Copyright © {{ footer.createYear }}-{{ new Date().getFullYear() }}
+      <span v-html="footer.copyrightInfo"></span>
+    </template>
   </div>
 </template>
 
@@ -75,6 +72,8 @@ export default {
   box-sizing border-box
   font-size 0.85rem
   transition all 0.2s ease
+  .busuanzi-box
+    margin-bottom 12px
   .icons
     margin-bottom 12px
     .iconfont

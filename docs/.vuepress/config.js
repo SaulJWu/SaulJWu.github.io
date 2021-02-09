@@ -7,6 +7,7 @@ module.exports = {
   head: [
     // 注入到页面<head> 中的标签，格式[tagName, { attrName: attrValue }, innerHTML?]
     ["link", { rel: "icon", href: "/img/favicon.ico" }], //favicons，资源放在public文件夹
+    ["link", { rel: "stylesheet", href: "/css/iconfont.css" }],
     [
       "meta",
       {
@@ -30,7 +31,7 @@ module.exports = {
   },
 
   theme: "vdoing", // 使用依赖包主题
-  // theme: require.resolve('../../theme-vdoing'), // 使用本地主题
+  theme: require.resolve("../../theme-vdoing"), // 使用本地主题
 
   themeConfig: {
     // 主题配置
