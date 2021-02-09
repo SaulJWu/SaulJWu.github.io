@@ -19,7 +19,7 @@
   display flex
   .main-left
     flex 1
-    width 72%
+    // width 72%
     .theme-vdoing-content.card-box
       padding 1rem 1.5rem
       margin-bottom 0.9rem
@@ -27,13 +27,14 @@
       padding 1rem 1.5rem 0
   .main-right
     >*
-      width 265px
+      width 245px
       box-sizing border-box
       @media (max-width 900px)
         width 235px
     .card-box
       margin 0 0 0.9rem 0.9rem
-      padding 0.95rem
+      padding-top 0.95rem
+      padding-bottom 0.95rem
 // 719px以下
 @media (max-width $MQMobile)
   .main-wrapper
