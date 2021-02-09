@@ -84,7 +84,7 @@ module.exports = {
     blogger: {
       // 博主信息，显示在首页侧边栏
       avatar:
-        "https://raw.githubusercontent.com/SaulJWu/images/main/20201114225611.jpg",
+        "https://raw.githubusercontent.com/SaulJWu/images/main/20210208160252.jpg",
       name: "Saul.J.Wu",
       slogan: "立身之本，不在高低。",
     },
