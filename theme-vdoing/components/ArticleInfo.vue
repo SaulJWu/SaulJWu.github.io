@@ -95,7 +95,11 @@
         >
           <a href="javascript:;">{{ articleInfo.date }}</a>
         </div>
-        <div class="icon iconfont icon-liulanliang" title="浏览量">
+        <div
+          class="icon iconfont icon-liulanliang"
+          title="浏览量"
+          id="busuanzi_container_page_pv"
+        >
           <a href="javascript:;" id="busuanzi_value_page_pv"></a>
         </div>
         <div
