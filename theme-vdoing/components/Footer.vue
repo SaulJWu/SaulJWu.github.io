@@ -37,9 +37,13 @@
 </template>
 
 <script>
-const busuanzi = require("busuanzi.pure.js");
+/* 不蒜子访问量统计 */
+let script;
 
 export default {
+  mounted() {
+    script = require("busuanzi.pure.js");
+  },
   computed: {
     social() {
       return this.$themeConfig.social;

@@ -124,8 +124,12 @@
 </template>
 
 <script>
-const busuanzi = require("busuanzi.pure.js");
+/* 不蒜子访问量统计 */
+let script;
 export default {
+  mounted() {
+    script = require("busuanzi.pure.js");
+  },
   data() {
     return {
       articleInfo: {},
@@ -138,6 +142,7 @@ export default {
     "$route.path"() {
       this.articleInfo = this.getPageInfo();
     },
+    // 监听,当路由发生变化的时候执行
     $route(to, from) {
       if (to.path != from.path) {
         script.fetch();
