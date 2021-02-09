@@ -76,9 +76,6 @@
         >
           <a href="javascript:;">{{ articleInfo.date }}</a>
         </div>
-        <div class="date iconfont icon-liulanliang" title="阅读量">
-          <span id="busuanzi_value_page_pv"></span>
-        </div>
         <div
           class="date iconfont icon-wenjian"
           title="分类"
@@ -94,6 +91,9 @@
             :key="index"
             >{{ item + " " }}</router-link
           >
+        </div>
+        <div class="date iconfont icon-liulanliang" title="阅读量">
+          <span id="busuanzi_value_page_pv"></span>
         </div>
       </div>
     </div>
