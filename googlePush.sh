@@ -4,4 +4,4 @@
 set -e
 
 # 谷歌鏈接推送
-curl http://www.google.com/ping?sitemap=https://sauljwu.github.io//google.xml
+curl http://www.google.com/ping?sitemap=https://sauljwu.github.io/sitemap.xml
