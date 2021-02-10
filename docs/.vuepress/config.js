@@ -1,5 +1,13 @@
 const nav = require("./config/nav.js");
 
+const autometa_options = {
+  site: {
+    name: "sauljwu",
+    twitter: "sauljwu",
+  },
+  canonical_base: "https://sauljwu.github.io/",
+};
+
 module.exports = {
   title: "Saul's blog",
   description: "读书百遍其义自见，人生亦是如此。", // 描述,以 <meta> 标签渲染到页面html中
@@ -117,6 +125,7 @@ module.exports = {
     },
   },
   plugins: [
+    ["autometa", autometa_options],
     [
       "sitemap",
       {
