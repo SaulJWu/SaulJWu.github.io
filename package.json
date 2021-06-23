@@ -29,7 +29,9 @@
     "yamljs": "^0.3.0"
   },
   "dependencies": {
+    "autoprefixer": "^8.0.0",
     "busuanzi.pure.js": "^1.0.3",
+    "postcss-loader": "^6.1.0",
     "vuepress-plugin-autometa": "^0.1.13",
     "vuepress-plugin-comment": "^0.7.3",
     "vuepress-plugin-sitemap": "^2.3.1"
