@@ -239,6 +239,7 @@ module.exports = {
           admin: ["SaulJWu"], // 对仓库有写权限的人
           // distractionFreeMode: true,
           pagerDirection: "last", // 'first'正序 | 'last'倒序
+          autoCreateIssue: true, // 自动创建评论，默认是false，最好开启，这样首次进入页面的时候就不用去点击创建评论的按钮了。
           id:
             "<%- (frontmatter.permalink || frontmatter.to.path).slice(-16) %>", //  页面的唯一标识,长度不能超过50
           title: "「评论」<%- frontmatter.title %>", // GitHub issue 的标题
