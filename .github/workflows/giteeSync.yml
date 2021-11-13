@@ -1,4 +1,4 @@
-name: GiteeSync
+name: sync to gitee
 
 on:
   page_build
