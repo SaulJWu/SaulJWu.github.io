@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>MySql底层 | Saul&#39;s blog</title>
+    <meta name="generator" content="VuePress 1.8.0">
+    <link rel="icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/iconfont.css">
+    <meta name="description" content="读书百遍其义自见，人生亦是如此。">
+    <meta name="twitter:title" content="MySql底层">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="https://sauljwu.github.io/60.%E6%9B%B4%E5%A4%9A/01.%E9%9D%A2%E8%AF%95%E9%A2%98/54.MySql%E5%BA%95%E5%B1%82.html">
+    <meta name="twitter:site" content="@sauljwu">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="MySql底层">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="https://sauljwu.github.io/60.%E6%9B%B4%E5%A4%9A/01.%E9%9D%A2%E8%AF%95%E9%A2%98/54.MySql%E5%BA%95%E5%B1%82.html">
+    <meta property="og:site_name" content="sauljwu">
+    <meta property="article:published_time" content="2020-11-17T17:14:35.000Z">
+    <meta property="article:tag" content="面试题">
+    <meta itemprop="name" content="MySql底层">
+    <meta itemprop="description" content="">
+    <meta name="keywords" content="读书百遍其义自见，学习亦是如此，人生亦是如此。">
+    <meta name="google-site-verification" content="zLD7NpxIQqa3yimtkMOD-WYwUKyLypzWkXW2KWh3xEs">
+    <meta name="baidu-site-verification" content="code-qs7vaYoSzk">
+    <meta name="theme-color" content="#722ED1">
+    <link rel="preload" href="/assets/css/0.styles.6f6e2191.css" as="style"><link rel="preload" href="/assets/js/app.5deb200c.js" as="script"><link rel="preload" href="/assets/js/2.325951e6.js" as="script"><link rel="preload" href="/assets/js/221.183ba8fb.js" as="script"><link rel="prefetch" href="/assets/js/10.be444d07.js"><link rel="prefetch" href="/assets/js/100.53dfb061.js"><link rel="prefetch" href="/assets/js/101.8c9c6028.js"><link rel="prefetch" href="/assets/js/102.2c6f457b.js"><link rel="prefetch" href="/assets/js/103.ee49b1aa.js"><link rel="prefetch" href="/assets/js/104.fc3338e9.js"><link rel="prefetch" href="/assets/js/105.5633592a.js"><link rel="prefetch" href="/assets/js/106.fc3bdfa4.js"><link rel="prefetch" href="/assets/js/107.d1c752a1.js"><link rel="prefetch" href="/assets/js/108.dd5c848a.js"><link rel="prefetch" href="/assets/js/109.6845c53a.js"><link rel="prefetch" href="/assets/js/11.62c8ce67.js"><link rel="prefetch" href="/assets/js/110.45406043.js"><link rel="prefetch" href="/assets/js/111.c9a95918.js"><link rel="prefetch" href="/assets/js/112.6cd22797.js"><link rel="prefetch" href="/assets/js/113.8b325179.js"><link rel="prefetch" href="/assets/js/114.f95b5044.js"><link rel="prefetch" href="/assets/js/115.f32da3bd.js"><link rel="prefetch" href="/assets/js/116.d2c077e8.js"><link rel="prefetch" href="/assets/js/117.7a14ed73.js"><link rel="prefetch" href="/assets/js/118.a5161590.js"><link rel="prefetch" href="/assets/js/119.9d96aac7.js"><link rel="prefetch" href="/assets/js/12.3ec53d6d.js"><link rel="prefetch" href="/assets/js/120.4bcbc027.js"><link rel="prefetch" href="/assets/js/121.e9ef8fe6.js"><link rel="prefetch" href="/assets/js/122.e77f8a47.js"><link rel="prefetch" href="/assets/js/123.5ee9dda5.js"><link rel="prefetch" href="/assets/js/124.e096a534.js"><link rel="prefetch" href="/assets/js/125.7cbce87e.js"><link rel="prefetch" href="/assets/js/126.4b1e44cb.js"><link rel="prefetch" href="/assets/js/127.6c0e78b0.js"><link rel="prefetch" href="/assets/js/128.f457e0e8.js"><link rel="prefetch" href="/assets/js/129.54768abb.js"><link rel="prefetch" href="/assets/js/13.f690cb02.js"><link rel="prefetch" href="/assets/js/130.937628fa.js"><link rel="prefetch" href="/assets/js/131.d5f05b1f.js"><link rel="prefetch" href="/assets/js/132.f01f061d.js"><link rel="prefetch" href="/assets/js/133.cc673095.js"><link rel="prefetch" href="/assets/js/134.84166ed1.js"><link rel="prefetch" href="/assets/js/135.c44f8870.js"><link rel="prefetch" href="/assets/js/136.92774e46.js"><link rel="prefetch" href="/assets/js/137.44ef7b2e.js"><link rel="prefetch" href="/assets/js/138.b41b698b.js"><link rel="prefetch" href="/assets/js/139.57246fa2.js"><link rel="prefetch" href="/assets/js/14.d3ca5610.js"><link rel="prefetch" href="/assets/js/140.0dafe1f7.js"><link rel="prefetch" href="/assets/js/141.2ad32399.js"><link rel="prefetch" href="/assets/js/142.6836d1a6.js"><link rel="prefetch" href="/assets/js/143.169c172d.js"><link rel="prefetch" href="/assets/js/144.4d10dc10.js"><link rel="prefetch" href="/assets/js/145.8e99b583.js"><link rel="prefetch" href="/assets/js/146.c4a34371.js"><link rel="prefetch" href="/assets/js/147.63f4ea0d.js"><link rel="prefetch" href="/assets/js/148.a0030d3c.js"><link rel="prefetch" href="/assets/js/149.01ad58a5.js"><link rel="prefetch" href="/assets/js/15.aee71ea8.js"><link rel="prefetch" href="/assets/js/150.79e43d74.js"><link rel="prefetch" href="/assets/js/151.5ac4a6b3.js"><link rel="prefetch" href="/assets/js/152.cad00a48.js"><link rel="prefetch" href="/assets/js/153.ce7eb32f.js"><link rel="prefetch" href="/assets/js/154.8b10c8f1.js"><link rel="prefetch" href="/assets/js/155.4b961e74.js"><link rel="prefetch" href="/assets/js/156.9204f61f.js"><link rel="prefetch" href="/assets/js/157.ccf7543e.js"><link rel="prefetch" href="/assets/js/158.fab7c7b7.js"><link rel="prefetch" href="/assets/js/159.6bdb31b2.js"><link rel="prefetch" href="/assets/js/16.d6966b09.js"><link rel="prefetch" href="/assets/js/160.03868e4e.js"><link rel="prefetch" href="/assets/js/161.6293c0ec.js"><link rel="prefetch" href="/assets/js/162.b6d7f5f8.js"><link rel="prefetch" href="/assets/js/163.2aaf0d85.js"><link rel="prefetch" href="/assets/js/164.71b1f008.js"><link rel="prefetch" href="/assets/js/165.86f1bd2c.js"><link rel="prefetch" href="/assets/js/166.e57e9750.js"><link rel="prefetch" href="/assets/js/167.de31da99.js"><link rel="prefetch" href="/assets/js/168.63db5f83.js"><link rel="prefetch" href="/assets/js/169.b737e68c.js"><link rel="prefetch" href="/assets/js/17.aeef2677.js"><link rel="prefetch" href="/assets/js/170.905f8399.js"><link rel="prefetch" href="/assets/js/171.22be3957.js"><link rel="prefetch" href="/assets/js/172.8086840d.js"><link rel="prefetch" href="/assets/js/173.bcfbc2d7.js"><link rel="prefetch" href="/assets/js/174.1137d23b.js"><link rel="prefetch" href="/assets/js/175.00d8ec1c.js"><link rel="prefetch" href="/assets/js/176.dbe8fb36.js"><link rel="prefetch" href="/assets/js/177.135319cc.js"><link rel="prefetch" href="/assets/js/178.f35a497b.js"><link rel="prefetch" href="/assets/js/179.5ea4fc96.js"><link rel="prefetch" href="/assets/js/18.437bd7aa.js"><link rel="prefetch" href="/assets/js/180.1c86e373.js"><link rel="prefetch" href="/assets/js/181.ed8eacba.js"><link rel="prefetch" href="/assets/js/182.9ecdd1c7.js"><link rel="prefetch" href="/assets/js/183.e88030dd.js"><link rel="prefetch" href="/assets/js/184.b77e8472.js"><link rel="prefetch" href="/assets/js/185.86992efd.js"><link rel="prefetch" href="/assets/js/186.186b7976.js"><link rel="prefetch" href="/assets/js/187.2310077c.js"><link rel="prefetch" href="/assets/js/188.9a9cd013.js"><link rel="prefetch" href="/assets/js/189.b26144c3.js"><link rel="prefetch" href="/assets/js/19.b9f7b38a.js"><link rel="prefetch" href="/assets/js/190.8d9880f4.js"><link rel="prefetch" href="/assets/js/191.122c53bc.js"><link rel="prefetch" href="/assets/js/192.b5de93bb.js"><link rel="prefetch" href="/assets/js/193.15c9a44f.js"><link rel="prefetch" href="/assets/js/194.9f285263.js"><link rel="prefetch" href="/assets/js/195.a52d2adb.js"><link rel="prefetch" href="/assets/js/196.3f64e46b.js"><link rel="prefetch" href="/assets/js/197.f59afec1.js"><link rel="prefetch" href="/assets/js/198.10b3deec.js"><link rel="prefetch" href="/assets/js/199.01c4d604.js"><link rel="prefetch" href="/assets/js/20.a1fed041.js"><link rel="prefetch" href="/assets/js/200.0c273549.js"><link rel="prefetch" href="/assets/js/201.c69763f2.js"><link rel="prefetch" href="/assets/js/202.0ad1177c.js"><link rel="prefetch" href="/assets/js/203.d6375dc7.js"><link rel="prefetch" href="/assets/js/204.71b58aa9.js"><link rel="prefetch" href="/assets/js/205.e5a785ea.js"><link rel="prefetch" href="/assets/js/206.a5dd027e.js"><link rel="prefetch" href="/assets/js/207.9096781b.js"><link rel="prefetch" href="/assets/js/208.5ab31b6a.js"><link rel="prefetch" href="/assets/js/209.ee3e9552.js"><link rel="prefetch" href="/assets/js/21.f0b86eb3.js"><link rel="prefetch" href="/assets/js/210.5abac8cc.js"><link rel="prefetch" href="/assets/js/211.1ae20348.js"><link rel="prefetch" href="/assets/js/212.c3dd8ebf.js"><link rel="prefetch" href="/assets/js/213.365e1025.js"><link rel="prefetch" href="/assets/js/214.a39ce184.js"><link rel="prefetch" href="/assets/js/215.581f8f59.js"><link rel="prefetch" href="/assets/js/216.cd8aea78.js"><link rel="prefetch" href="/assets/js/217.58abccc3.js"><link rel="prefetch" href="/assets/js/218.8f24e32f.js"><link rel="prefetch" href="/assets/js/219.6065a54c.js"><link rel="prefetch" href="/assets/js/22.99485d6e.js"><link rel="prefetch" href="/assets/js/220.9b77e578.js"><link rel="prefetch" href="/assets/js/222.b708ad27.js"><link rel="prefetch" href="/assets/js/223.f15ce744.js"><link rel="prefetch" href="/assets/js/224.2e1dc3ce.js"><link rel="prefetch" href="/assets/js/225.f19daf62.js"><link rel="prefetch" href="/assets/js/226.dc907b62.js"><link rel="prefetch" href="/assets/js/227.6b1ffe53.js"><link rel="prefetch" href="/assets/js/228.5fa0e056.js"><link rel="prefetch" href="/assets/js/229.cc1c99ee.js"><link rel="prefetch" href="/assets/js/23.7b9ed736.js"><link rel="prefetch" href="/assets/js/230.19aebf07.js"><link rel="prefetch" href="/assets/js/231.2b3f680c.js"><link rel="prefetch" href="/assets/js/232.260912ad.js"><link rel="prefetch" href="/assets/js/233.b9ae2fde.js"><link rel="prefetch" href="/assets/js/234.c7b9653c.js"><link rel="prefetch" href="/assets/js/235.8b25a26d.js"><link rel="prefetch" href="/assets/js/236.04c16f2c.js"><link rel="prefetch" href="/assets/js/237.ce4da176.js"><link rel="prefetch" href="/assets/js/238.ac515c9a.js"><link rel="prefetch" href="/assets/js/239.59626d27.js"><link rel="prefetch" href="/assets/js/24.85305800.js"><link rel="prefetch" href="/assets/js/240.5608a794.js"><link rel="prefetch" href="/assets/js/241.29a54b91.js"><link rel="prefetch" href="/assets/js/242.b6fb0e9e.js"><link rel="prefetch" href="/assets/js/243.52b7a9f7.js"><link rel="prefetch" href="/assets/js/244.a7e3e4a6.js"><link rel="prefetch" href="/assets/js/245.c1492e1c.js"><link rel="prefetch" href="/assets/js/246.5e57c563.js"><link rel="prefetch" href="/assets/js/247.37e058be.js"><link rel="prefetch" href="/assets/js/248.bf9a69b4.js"><link rel="prefetch" href="/assets/js/249.872a34fb.js"><link rel="prefetch" href="/assets/js/25.baabfb9e.js"><link rel="prefetch" href="/assets/js/250.e455ea0b.js"><link rel="prefetch" href="/assets/js/251.8f17cd56.js"><link rel="prefetch" href="/assets/js/252.55c215aa.js"><link rel="prefetch" href="/assets/js/253.48eef264.js"><link rel="prefetch" href="/assets/js/254.831c8e56.js"><link rel="prefetch" href="/assets/js/255.af1cc3d8.js"><link rel="prefetch" href="/assets/js/256.5ef2aa03.js"><link rel="prefetch" href="/assets/js/257.3523aa37.js"><link rel="prefetch" href="/assets/js/258.c6f08800.js"><link rel="prefetch" href="/assets/js/259.78cf6359.js"><link rel="prefetch" href="/assets/js/26.8fd35486.js"><link rel="prefetch" href="/assets/js/260.db0a5459.js"><link rel="prefetch" href="/assets/js/261.66e121b1.js"><link rel="prefetch" href="/assets/js/262.0c85b04b.js"><link rel="prefetch" href="/assets/js/263.1de18f7e.js"><link rel="prefetch" href="/assets/js/264.3644116c.js"><link rel="prefetch" href="/assets/js/265.1096be4e.js"><link rel="prefetch" href="/assets/js/266.9f82ff25.js"><link rel="prefetch" href="/assets/js/267.d0134a9b.js"><link rel="prefetch" href="/assets/js/268.a49d448e.js"><link rel="prefetch" href="/assets/js/269.9dbc0b30.js"><link rel="prefetch" href="/assets/js/27.d92e1b1e.js"><link rel="prefetch" href="/assets/js/270.0778af1f.js"><link rel="prefetch" href="/assets/js/271.07f3e0d6.js"><link rel="prefetch" href="/assets/js/272.80acb538.js"><link rel="prefetch" href="/assets/js/273.39038e4c.js"><link rel="prefetch" href="/assets/js/274.dfc661d8.js"><link rel="prefetch" href="/assets/js/275.eef76199.js"><link rel="prefetch" href="/assets/js/276.70135542.js"><link rel="prefetch" href="/assets/js/277.6b7b2776.js"><link rel="prefetch" href="/assets/js/278.9ae076a1.js"><link rel="prefetch" href="/assets/js/279.4a2a0235.js"><link rel="prefetch" href="/assets/js/28.b15a9a4a.js"><link rel="prefetch" href="/assets/js/280.81188b31.js"><link rel="prefetch" href="/assets/js/281.68ba0888.js"><link rel="prefetch" href="/assets/js/282.c7362b07.js"><link rel="prefetch" href="/assets/js/29.dc59f6d5.js"><link rel="prefetch" href="/assets/js/3.b069e494.js"><link rel="prefetch" href="/assets/js/30.a6ccc6b3.js"><link rel="prefetch" href="/assets/js/31.0d6c5e56.js"><link rel="prefetch" href="/assets/js/32.1165d991.js"><link rel="prefetch" href="/assets/js/33.09d8ea06.js"><link rel="prefetch" href="/assets/js/34.fb2d7478.js"><link rel="prefetch" href="/assets/js/35.13b6c5e7.js"><link rel="prefetch" href="/assets/js/36.decada4b.js"><link rel="prefetch" href="/assets/js/37.68c20beb.js"><link rel="prefetch" href="/assets/js/38.74bf5aef.js"><link rel="prefetch" href="/assets/js/39.dad167ed.js"><link rel="prefetch" href="/assets/js/4.adaa1bb8.js"><link rel="prefetch" href="/assets/js/40.06fd85c4.js"><link rel="prefetch" href="/assets/js/41.0a7f9575.js"><link rel="prefetch" href="/assets/js/42.566c4057.js"><link rel="prefetch" href="/assets/js/43.db64a741.js"><link rel="prefetch" href="/assets/js/44.65dd07cc.js"><link rel="prefetch" href="/assets/js/45.15897d4b.js"><link rel="prefetch" href="/assets/js/46.f0503917.js"><link rel="prefetch" href="/assets/js/47.8ee4ebda.js"><link rel="prefetch" href="/assets/js/48.7e69c090.js"><link rel="prefetch" href="/assets/js/49.c4ad0c9c.js"><link rel="prefetch" href="/assets/js/5.c20be8b8.js"><link rel="prefetch" href="/assets/js/50.4da8aedc.js"><link rel="prefetch" href="/assets/js/51.a07f53cf.js"><link rel="prefetch" href="/assets/js/52.67f4a7a0.js"><link rel="prefetch" href="/assets/js/53.3a2bdf1e.js"><link rel="prefetch" href="/assets/js/54.4485bbe3.js"><link rel="prefetch" href="/assets/js/55.86fabec7.js"><link rel="prefetch" href="/assets/js/56.9ab42b07.js"><link rel="prefetch" href="/assets/js/57.8cf1a0ea.js"><link rel="prefetch" href="/assets/js/58.39e3c28b.js"><link rel="prefetch" href="/assets/js/59.c88972ae.js"><link rel="prefetch" href="/assets/js/6.2a62c8cd.js"><link rel="prefetch" href="/assets/js/60.6b124dd0.js"><link rel="prefetch" href="/assets/js/61.4e008373.js"><link rel="prefetch" href="/assets/js/62.0f0799c6.js"><link rel="prefetch" href="/assets/js/63.8e7579e6.js"><link rel="prefetch" href="/assets/js/64.6af6542d.js"><link rel="prefetch" href="/assets/js/65.6f21b0ab.js"><link rel="prefetch" href="/assets/js/66.d453d9bd.js"><link rel="prefetch" href="/assets/js/67.3ee91d23.js"><link rel="prefetch" href="/assets/js/68.115221b4.js"><link rel="prefetch" href="/assets/js/69.8936bedb.js"><link rel="prefetch" href="/assets/js/7.fb60c5b7.js"><link rel="prefetch" href="/assets/js/70.9a263b4c.js"><link rel="prefetch" href="/assets/js/71.daaeff3d.js"><link rel="prefetch" href="/assets/js/72.6b0e6283.js"><link rel="prefetch" href="/assets/js/73.49dc89c5.js"><link rel="prefetch" href="/assets/js/74.9b5ea005.js"><link rel="prefetch" href="/assets/js/75.a56d5cb4.js"><link rel="prefetch" href="/assets/js/76.bf483918.js"><link rel="prefetch" href="/assets/js/77.1d485991.js"><link rel="prefetch" href="/assets/js/78.43408ba2.js"><link rel="prefetch" href="/assets/js/79.5d421e5a.js"><link rel="prefetch" href="/assets/js/8.6b2e87de.js"><link rel="prefetch" href="/assets/js/80.987bbce1.js"><link rel="prefetch" href="/assets/js/81.5c46dc6f.js"><link rel="prefetch" href="/assets/js/82.db7e6f5b.js"><link rel="prefetch" href="/assets/js/83.ef49597c.js"><link rel="prefetch" href="/assets/js/84.0a70af1e.js"><link rel="prefetch" href="/assets/js/85.f80257bf.js"><link rel="prefetch" href="/assets/js/86.e9115684.js"><link rel="prefetch" href="/assets/js/87.f9e81814.js"><link rel="prefetch" href="/assets/js/88.2d1ed201.js"><link rel="prefetch" href="/assets/js/89.5f22787d.js"><link rel="prefetch" href="/assets/js/9.c3271233.js"><link rel="prefetch" href="/assets/js/90.8e91aaba.js"><link rel="prefetch" href="/assets/js/91.a0c7fb4c.js"><link rel="prefetch" href="/assets/js/92.0676048c.js"><link rel="prefetch" href="/assets/js/93.b65c907f.js"><link rel="prefetch" href="/assets/js/94.04514d61.js"><link rel="prefetch" href="/assets/js/95.0c94a469.js"><link rel="prefetch" href="/assets/js/96.3fdc5912.js"><link rel="prefetch" href="/assets/js/97.615d477b.js"><link rel="prefetch" href="/assets/js/98.1ecfd9cf.js"><link rel="prefetch" href="/assets/js/99.57c5f4a2.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.6f6e2191.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/img/logo.jpg" alt="Saul's blog" class="logo"> <span class="site-name can-hide">Saul's blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><a href="/technology/" class="nav-link">后端</a></div><div class="nav-item"><a href="/distributed/" class="nav-link">分布式</a></div><div class="nav-item"><a href="/web/" class="nav-link">前端</a></div><div class="nav-item"><a href="/more/" class="nav-link">更多</a></div><div class="nav-item"><a href="/categories/" class="nav-link">分类</a></div><div class="nav-item"><a href="/tags/" class="nav-link">标签</a></div><div class="nav-item"><a href="/archives/" class="nav-link">归档</a></div><div class="nav-item"><a href="/friends/" class="nav-link">友情链接</a></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div> <a href="https://github.com/SaulJWu/SaulJWu.github.io" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar" style="display:none;"><div class="blogger"><img src="https://gitee.com/SaulJWu/blog-images/raw/master/images/20210627222322.jpg"> <div class="blogger-info"><h3>Saul.J.Wu</h3> <span>立身之本，不在高低。</span></div></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><a href="/technology/" class="nav-link">后端</a></div><div class="nav-item"><a href="/distributed/" class="nav-link">分布式</a></div><div class="nav-item"><a href="/web/" class="nav-link">前端</a></div><div class="nav-item"><a href="/more/" class="nav-link">更多</a></div><div class="nav-item"><a href="/categories/" class="nav-link">分类</a></div><div class="nav-item"><a href="/tags/" class="nav-link">标签</a></div><div class="nav-item"><a href="/archives/" class="nav-link">归档</a></div><div class="nav-item"><a href="/friends/" class="nav-link">友情链接</a></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div> <a href="https://github.com/SaulJWu/SaulJWu.github.io" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>面试题</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/pages/ad8eec/" class="sidebar-link">面试点</a></li><li><a href="/pages/a00fdb/" class="sidebar-link">面试点二</a></li><li><a href="/pages/c3d3a0/" class="sidebar-link">高频面试题</a></li><li><a href="/pages/71ed63/" class="sidebar-link">多线程与高并发</a></li><li><a href="/pages/d4ed11/" class="sidebar-link">MySQL 基础</a></li><li><a href="/pages/241fd3/" aria-current="page" class="active sidebar-link">MySql底层</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/pages/241fd3/#​" class="sidebar-link">​</a></li></ul></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>博客搭建</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>部署相关</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>填坑</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Python</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>其他</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>收藏夹</span> <span class="arrow right"></span></p> <!----></section></li><li><a href="/friends/" class="sidebar-link">友情链接</a></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-1cd794fe><div class="articleInfo" data-v-1cd794fe><ul class="breadcrumbs" data-v-1cd794fe><li data-v-1cd794fe><a href="/" title="首页" class="iconfont icon-home router-link-active" data-v-1cd794fe></a></li> <li data-v-1cd794fe><a href="/more" title="更多-目录页" data-v-1cd794fe>更多</a></li> <li data-v-1cd794fe><a href="/more/#面试题" title="更多#面试题" data-v-1cd794fe>面试题</a></li> <!----></ul> <div class="info" data-v-1cd794fe><div title="作者" class="author iconfont icon-touxiang" data-v-1cd794fe><a href="javascript:;" data-v-1cd794fe>sujian</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-1cd794fe><a href="javascript:;" data-v-1cd794fe>2020-11-17</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABKFJREFUSA3tVl1oFVcQnrMbrak3QUgkya1akpJYcrUtIqW1JvFBE9LiQ5v6JmJpolbMg32rVrhgoYK0QiMY6i9Y6EMaW5D+xFJaTYItIuK2Kr3+BJNwkxBj05sQY3b3nM6cs2dv9t7NT/vQJw/sndk5M/PNzJkzewGerP+pAmy+ON8lLzUJgA8ZYxYIYZmGYRnctDaWvJJAmTtfP1pvXsBCCPP8QFcCaRkZYACgDZFO4stNIcBCajEOlmmC9XpJ9bAGCaPaPmzPl32dvLSVu3BWCTQs0XQQ6g0DYgwLIoAZbBCdW/i+781o1VVlm/410mw4h06Y7bIPHNyWDyL4FHkX03Q8SrzNhZTZriieckWt7cL6MM85YcLpsi/7O9/iXFT6MswI0DmmpkSaJ0qLxFIm3+i1THHB3zmBH3PYx9CcykcLOeQVVa7QtdxTgQgEleX2AjHYfwA+2ddV77ruGoJUbhGDI09YSNXyMpUt5ylOzxgbUmtOp7NmbNt8v3arjTBfYELmLUV+M+nSawNNAUqpT3ClJWg5I3BLT+cGW/DXNGCa6tx1aakCGEigArTn4TDIPdrXXYKCZNrHLMCOEPvHBlLQ99s9eHB7EB6NTki73CVPQ2F5MSx/uRQixfmq7rK0wYD8w8E905bnPDfwoWs/rfv93NWN/ZfvwsLIU7A09gxECyISeGJkHAau98L97tuw7NXnoPyNF8FcYGLGKsOs0mN3OEyec9esGW/ZEl945dTP34wlR2FZVQWU1q0Cw8Tr7p+hgLLNL0FPxx/Q35mA8aEUrH6nCgwEl0tn7wUiZYJnNRh6DK4UH/k0lfyrsBKdPVv/AriGIQcEDQZ65LBAGe2Rzui9Ybjz7XUppz1/uKBbyVPGkN3ZAeC6hr0x7Nr38N5+EqkoOm17xpoqR9ohQF55ERSvr4Dkr3chNfC3DMzGJlNBElW8w9nsGQvhNGIzDkXzCg8cLK951xHsFBlTJspJNi3ZFIMF2AeDV3q8DNOB+YHi6QTrChDIWDBRi5U5f+ZMfJLu3ccrqxtdxk4SKH336LFxSmkqefwU5T8fhdSdQf9IVKD6aNiwI/hnmcAZ91isYMJIaCUCx9W098+LgruikeTqzqqxKPUwqJyCPJiyemVVZBOijDGjD38Os0jOiSPL1z3SPjXNANbiNPXAdzTfukjjuknNBbyz3nwgTd3AVFqUJ5hpHlq9MveLnWwttUfoygBmvVjuikxND3znrhsELnZk7k+OjIGxeNEkomyLVta0xxn+HZhjBc4YZ/AFjHjz9u3xRZl2BN4aq9nFwWh16IrQ1aHHEd3j1+4/dB9OtH4e29A2H1DyHQRmOSfQZ1Fy7MHBTGB6J/Djq6p3OxyO2cB+4Car7v/o3GXgfAkj23+x9ID1Teoamo/SXcbvSf2PX7Vc8DdCmE1vN9di+32P9/5YR3vLnhCVGUWBjEkr3yh4H8v9CzmsbdhzOKzsJKM90iFdaTMjRPhGVsakRvOaRidljo6H6G7j+ctrJpsP+4COhDIl0La2+FS4+5mlocBaXY5QnGZysIBYoeSsl5qQzrSj/cgNrfuEzlWBfwA+EjrZyWUvpAAAAABJRU5ErkJggg==">
+          MySql底层
+        </h1> <!----> <div class="theme-vdoing-content content__default"><p>MySQL数据库优化
+1.聚簇索引和非聚簇索引的区别
+2.什么叫回表，索引覆盖，索引下推，最左匹配
+3.MVCC (多版本并发控制)  ---  属于事务的东西
+4. IPC 和 MRR</p> <div class="language- extra-class"><pre><code>Memory 支持 hash索引，innoDB 也叫自适应hash索引，严格来说，innoDB是支持Hash索引，但是人为不可控制。
+
+
+为什么mysql不使用别的索引方式，而是用B+树方式？
+      因为mysql他是一个事务数据库，他需要当sql语句执行时，在尽可能短的时间之内，返回对应的结果。所以B+树可以满足他的需求。
+
+
+
+mysql索引存储在哪里，内存还是磁盘，为什么不放在内存或是磁盘中？
+      MySQL索引是会以文件的形式存储在磁盘中，因为如果放在内存中，磁盘如果宕机，那么在内存就没办法找得到了。
+
+存储引擎是什么？
+      表示不同的数据文件，在磁盘上的存储格式
+
+索引文件的结构
+hash
+二叉树
+B树
+B+树
+   
+为什么要最终选择B+树而不选择其他三个来做索引
+
+hash缺点：
+      1.要使用hash表，就需要设置一个非常好的hash函数，以避免发生hash碰撞或者说hash冲突
+      2.那么hash表他是一个数组+链表的，那么每次进行操作的时候，都需要把数据读到内存中，那如果数据量太大，内存肯定是扛不住的
+      3.还有就是，hash表定位的时候，那他肯定是用key去找value的，那如果是查找的是一个范围的话，因为他本身是一个无序的，那么他只能挨个匹配，所以这个效率就会变得很低了。
+（为什么Memory 用hash呢？ 因为Memory 他本身就是在内存里面放着，他正好是匹配了这样的一个数据结构嘛）
+</code></pre></div><hr> <p>PS：在innoDB里面，数据和索引是合在一起的。  意味着，在存储索引的时候，数据和索引是绑定在一起的。</p> <div class="language- extra-class"><pre><code>聚簇索引和非聚簇索引的区别  （也叫聚集索引和非聚集索引）
+
+聚簇索引：不是单独的索引类型，而是一种数据存储方式，指的是数据行跟相邻的键值紧凑的存储在一起
+    说人话：
+	索引和数据是绑定在一起的，所以存储的时候必须要有个Key，一般是主键或者非空的唯一索引，如果都没有，mysql就会生成一个六个字节的row_id，用户是不可见的。
+	只要用了innoDB，他一定是聚簇索引。
+	（每次在进行数据的查找的时候，我能够根据主键直接能够定位到数据的，这种组织方式叫聚簇索引）
+
+       优点：
+	1.可以把相关数据保存在一起
+	2.数据访问更快，因为索引和数据保存在同一个树中
+	3.使用索引覆盖扫描的查询可以直接使用叶节点中的主键值
+
+       缺点：
+	1.聚簇数据最大限度地提高了IO密集型应用的性能，如果数据全部在内存，那么聚簇索引就没什么优势了。
+	2.插入速度严重依赖于插入顺序，按照主键的顺序插入是最快的方式
+	3.更新聚簇索引列的代价很高，因为会强制将每个被更新的行移动到新的位置
+	4.基于聚簇索引的表在插入新行，或者主键被更新导致需要移动行的时候，可能面临页分裂的问题。
+	5.聚簇索引可能导致全表扫描变慢，尤其是行比较稀疏，或者由于页分裂导致数据存储不连续的时候。
+
+
+非聚簇索引：数据文件跟索引文件分开存放
+    说人话：
+	索引和数据是分开的，索引归索引，数据归数据。分成了两个对应的文件。
+	MyISM则是非聚簇索引，根节点存储的并不是数据，而是能够指向数据的地址。
+</code></pre></div><p>PS：一开始mysql只支持myISAM,后来才出现的innoDB， 两者的区别包括：
+1.索引的区别，一个是聚簇，一个是非聚簇
+2.innoDB支持事务，MyISAM不支持事务。
+3.MyISAM只支持表锁，InnoDB支持行锁和表锁</p> <p>在mysql中，索引由mysql自动创建。在创建的时候，他会给唯一且非空的键创建索引。</p> <hr> <p>（回表）
+如果现在既有主键也有非空唯一键，那么必定是以主键来建索引，而非空唯一键，则是另外的在建一个索引，会单独的再开辟一个B+树，但是我的数据在存放的时候，就不再是存放一整行记录，
+而是存放主键。也叫二级索引
+例：
+select * from table where name = 'zhangsan'
+那么他会先以这个name去找他的B+树，找到根节点，拿到主键，再依照主键去查询主键所在的B+树，再读取整行记录并返回数据。（这整一个过程就叫回表）</p> <p>回表：如果创建索引的键是其他字段，那么在叶子节点中存储的是该记录的主键，然后再通过主键索引找到对应的记录
+人话：当我在查询辅助索引（二级索引）的时候，需要先根据二级索引查询到主键，然后再根据主键去主键的B+树里进行实际数据值的查找 ，这个过程就叫回表。</p> <hr> <p>（索引覆盖）“ Using  index”
+例：这两者有什么区别呢？</p> <div class="language- extra-class"><pre><code>1  select id from table where name = 'zhangsan'
+2  select * from table where name = 'zhangsan' 
+</code></pre></div><p>答案： 1语句的执行速度比 2语句快，在需求是只需要拿到ID的时候，1语句查询二级索引的时候，查询到结果既可以返回，但如果使用了*，那么他就必须要进行回表操作，也就是拿到
+主键然后去主键所在的B+树里面进行实际数据查找，所以，速度自然是慢的。
+那么这个不需要进行回表操作的过程，就叫做索引覆盖。</p> <p>索引覆盖的基本介绍：
+1.如果一个索引包含所有需要查询的字段的值，我们称之为覆盖索引
+2.不是所有类型的索引都可以称为覆盖索引，覆盖索引必须要存储索引列的值
+3.不同的存储实现覆盖索引的方式不同，不是所有的引擎都支持覆盖索引，memory不支持覆盖索引</p> <p>覆盖索引的优势：
+1.索引条目通常远小于数据行大小，如果只需要读取索引，那么MySQL就会极大的减少数据访问量
+2.因为索引是按照列值顺序存储的，所以对于IO密集型的范围查询会比随机从磁盘读取每一行数据的IO要少得多
+3.一些存储引擎如MYISAM在内存中只缓存索引，数据则依赖于操作系统缓存，因此要访问数据需要一次系统调用，这可能会导致严重的性能问题。
+4.由于INNODB的聚簇索引，所以覆盖索引对INNODB表特别有用。</p> <hr> <p>（最左匹配）
+例：假设有这么一张表
+id           name           age           gender           hiredate           job
+但是现在发现，日常主要查询条件是，where name=? and age=?
+所以为了查询快速及方便，我可以给name 和 age 添加一个索引 → （name,age）
+那么这种索引，就是联合索引。</p> <p>联合索引（组合索引）：如果索引列包含的是多个列，那么这种就称之为联合索引（组合索引）
+PS：联合索引中有个概念，就是最左匹配。</p> <p>最左匹配：在包含多个列的查询过程中，会先查第一个列，在查第二个列。如上列所示，会先查name再查age，查不到name,那么age也是无法被查询出来。</p> <p>问题：如果写的是  where age=? and name=?    该条语句是否会执行联合索引</p> <p>答案：会执行，因为在mysql中，他有着自己的server，分为连接器，分析器，优化器，执行器。所以在sql执行时，优化器会帮你优化，选择正确的顺序来执行。</p> <hr> <p>（谓词下推）	
+例：
+select  t1.name,t2.name  from  t1  join  t2  on  t1.id  =  t2.id;
+可以有几种执行方式，哪一种更好。
+1.先将两个表按照id字段进行拼接，完成之后再取出name.
+2.把所有需要的列都拿出来，然后再拼接</p> <p>2方法更好，比如 t1表里有100条数据， t2表里有200条数据，如果使用第一种方法，那么就等于把两个表数据合在一起，也就成了300条，然后再进行处理。
+而第二种方法，则是t1表需要的几条数据拿出来，然后再把t2表需要的几条拿出阿来，再进行处理。</p> <p>这种处理方式，就叫做谓词下推。</p> <p>谓词下推概念：</p> <hr> <p>（索引下推 ， 也叫ICP） “Using  index  condition”
+例： 现在创建了一个联合索引，在不使用索引下推的情况：
+是先根据name列的值把所有符合的数据都拉取到sever层，在server层对age做过滤
+使用索引下推：
+根据name,age两个字段把满足要求的数据拉取到server层，取出对应的数据</p> <p>如果在执行计划，也就是导入sql的时候，显示着using  index  condition   代表着使用了索引下推。</p> <p>索引下推概念：</p> <hr> <p>MRR（多范围查询）：</p> <p>比如在回表操作的时候，我们是根据name先去查找的，然而在name这个二级索引的B+树上，就是根据name来排序的，那么就有可能导致叶节点上的id排序并不一定是有顺序的，
+有可能是无序的。那么查找出来的ID列表就会是一个无序的，然后再根据这个ID列表去主键B+树查找的时候，就会有可能不断地进行匹配，相当于从根节点不断地进行遍历，也就变成了随机查找。</p> <p>那么当返回的id之后，先将这些id进行排序，当排序完成之后再去主键B+树查找，这个就是MRR。
+而因为每次取出的都是主键的值，所以这个排序在内存里并不会浪费太多的空间，也不会浪费多少时间。</p> <hr> <p>MVCC (多版本并发控制)：
+问题：
+为什么可重复读不会发生不可重复读异常，而读已提交却会发生不可重复读异常？这其实就跟MVCC有关。</p> <p>问题2：
+如果说现在有A,B两个线程，A线程现在对X数据进行更改操作，那么，X数据就会被加锁。现在B线程要读取X数据，那么是否可以读到，读到的数据又是什么？</p> <p>答案：
+可以读到，涉及到两个名词，一致性非锁定读和一致性锁定读，而mysql中使用的就是一致性非锁定读。所以B线程可以继续读取X数据，但是读取的，是X数据的历史快照。</p> <p>这个操作，就由MVCC来控制，那么MySQL中，是使用undo log来实现的MVCC。在X数据加锁之前，会在undo log里面记录一条日志，这个日志保存的就是之前的一条历史记录。
+所以当X数据加锁之后，B线程会读到undo log里面之前的数据里面的一个状态。</p> <p>回到问题1 ，为什么不可重复读异常只有读已提交会触发，而可重复读却不会呢？
+原因是：
+在undo log里面，他有可能会存在X数据的很多个版本的历史数据，在读已提交里面，默认读的是最新的，已经持久化的数据（历史版本）。
+而在可重复读里面，他默认读取的，是当前事务，也就是加锁之前，最新的，已经持久化的数据（历史版本）。</p> <p>比如：现在依然是A，B两个线程对X数据进行操作，A进行修改，B进行查询。如果现在是读已提交，那么就会有这么一种情况：
+X数据上锁之前会记录一个版本号为V1，但是现在，修改操作完成了，但是锁还没有释放，这个时候事务提交，那么就会出现新的版本号为V2，当B来查询的时候，就会把这个V2读取
+可如果是可重复读，那么B就只会读取X数据加锁之前的最新的版本号，也就是V1.</p> <p>问题1答案：
+所以这就是为什么可重复读不会发生不可重复读这个异常，这也就是MVCC。</p> <hr> <p>mysql隔离级别（不同的隔离级别可能导致不同的并发异常）：<br>
+读未提交 -----  最低级别，可能会发生脏读，不可重复读，幻读
+读已提交 -----  是Oracle和别的数据库默认隔离级别，可能会发生不可重复读，幻读
+可重复读 -----  是MySQL默认的隔离级别，可能会发生幻读
+串行化    -----  最高级别，基本不会发生异常</p> <hr> <p>索引的分裂和合并：
+例：在B+树的叶子节点里，有这么一个块，里面的索引排序是3，5，9，10。
+问题1：
+因为这个是有序的排序，现在我要插入一条索引为6的数据，可是这个块只能存放四条数据，现在已经满了，不给插入那就破坏了有序这个结构。怎么办呢？</p> <p>答案：
+当发生这样一种情况的时候，就会触发一个页分裂的操作。</p> <p>什么是页分裂？
+页分裂就是把需要插入数据的这个块等分，3，5分为一个块，9，10又会分为另一个块。但是这样分裂完之后，他还会把指向这个叶节点的非叶子节点的索引进行更改，对应的索引重新指向这两个块
+这个过程就是页分裂。</p> <p>合并：
+假如说，现在3，5，9，10这个块称为A块，11，12，16，18称为B块 ，现在，A块里面的9，10被删掉了，B块的11，12也被删掉了。
+那么，就会造成A块和B块都有一半的空间被浪费，所以这个时候，就会触发另一个操作，也就是叶子的合并操作。</p> <p>可是无论是合并也好，页分裂也好，都是会比较麻烦的，因为在进行这两个操作的时候，那就会需要加锁。一加锁，又会触发一个机制，那就是FIC，全称fast index creation，是一种机制，主要作用是用来加快整体索引维护的一个东西，
+原来的时候，我们需要先创建一张临时表，然后更改数据，更改完成之后，再把临时表改名。但是有了FIC就不需要这样了。</p> <p>留一个点：   FIC？？？</p> <hr> <p>索引的优点：
+1.大大减少了服务器需要扫描的数据量
+2.帮助服务器避免排序和临时表
+3.将随机IO变成顺序IO</p> <hr> <p>索引的用处：
+1.快速查找匹配WHERE子句的行
+2.如果给每一个字段都建索引，所以有可能在一个sql语句里面，可能会用很多个索引，这个时候mysql优化器会选择最优的索引来进行查找。
+3.如果表具有多列索引，则优化器可以使用索引的任何最左前缀来查找行。
+4.当有表连接的时候，从其他表检索行数据
+5.查找特定索引列min或max值
+6.如果排序或分组时在可用索引的最左前缀上完成的，则对表进行排序和分组。
+7.在某些情况下，可以优化查询以检索值而无需查询数据行</p> <hr> <p>索引的分类：
+1.主键索引 ：   如果你在创建索引的时候是使用主键来作为Key的，那么就是主键索引，主键索引不允许出现空值</p> <div class="language- extra-class"><pre><code>2.唯一索引：   主键以外的一个唯一键来创建的索引，称之为唯一索引，唯一索引允许出现空值。
+
+3.普通索引：   当你给一个列创建索引，这个列既不是唯一列也不是主键列，那么就称之为普通索引
+
+4.全文索引：   
+
+5.组合索引：   当创建索引时，Key不再是只有一个列，而是多个列，那么，就是组合索引。
+</code></pre></div><hr> <p>索引匹配方式：
+1.全值匹配， 意思是搜索的所有的值都是准确匹配上的，如：select * from table where name = 'zhangsan' and age = 24;</p> <div class="language- extra-class"><pre><code>2.匹配最左， 也就是最左匹配原则，先匹配name才会去匹配age。
+
+3.匹配列前缀， 也就是可以匹配某一个列的值的开头部分，也就是平常的like语句。   select * from table where name like 'zhang%'
+    但是要注意！！！如果是  select * from table where name like '%san'  ，那么就不符合这个原则，就不会使用到索引了！
+
+4.匹配范围值， 可以查找某一个范围的数据，如： select * from table where name &gt; 'zhangsan'
+
+5.精准匹配某一列并范围匹配另一列，可以查询第一列的全部和第二列的部分。栗子： select * from table where name = 'zhangsan' and age &gt;20 ;
+    注意！！  如果是这样  select * from table where name = 'zhangsan' and age &gt;20  and  pos = 'xxx'；他也会使用索引，但是！他会只使用name 和age来匹配，而pos 是不参与匹配的，
+	也就是说，如果你在联合索引里要去匹配多个列，那么不要在中间使用范围匹配，否则他会把后面的数据查询给阻断掉。  
+
+6.  只访问索引的查询， 查询的时候只需要访问索引，不需要访问数据行，本质上就是索引覆盖。栗子：select  name,age,pos  from table where name = 'zhangsan' and age = 20  and  pos = 'xxx';
+	也就是，我不需要再进行回表操作，只需要访问到索引下面，直接拉取name , age 和 pos 的值即可。这也是索引覆盖的概念。
+</code></pre></div><hr> <p>哈希索引：
+1.基于哈希表实现的，只有精确匹配索引所有列的查询才有效。</p> <div class="language- extra-class"><pre><code>2.在MySQL中，只有memory的存储引擎显示支持哈希索引
+
+3.哈希索引自身只需要存储对应的hash值，所有索引的结构十分紧凑，所以也就导致他的查询速度非常快。
+</code></pre></div><p>哈希索引的限制：
+1.哈希索引只包含哈希值和行指针，而不存储字段值，所以不能使用索引中的值来避免读取行。</p> <div class="language- extra-class"><pre><code>2.哈希索引数据并不是按照索引值顺序存储的，所以无法进行排序。
+
+3.哈希索引不支持部分列匹配查找，哈希索引是使用索引列的全部内容来计算哈希值
+
+4.哈希索引支持等值比较查询，也不支持任何范围查询。
+
+5.访问哈希索引的数据非常快，除非有很多哈希冲突，当出现哈希冲突的时候，存储引擎必须遍历链表中的所有行指针，逐行进行比较，直到找到所有符合条件的行。
+
+6.哈希冲突比较多的话，维护的代价就会变得很高。 	
+</code></pre></div><p>案例：什么情况下可以使用哈希索引，也就是memory存储引擎？</p> <div class="language- extra-class"><pre><code>如果，当前表需要存储大量的url，并且要根据URL来进行搜索查找，就可以使用哈希索引。因为如果使用B+树来存储，存储的内容就会非常大。
+       所以可以使用哈希索引，做一个短地址映射，而不是直接存放数据。也可以使用CRC32做哈希，然后进行存储。
+</code></pre></div><p>注意！！！
+CRC32（数据循环冗余校验）：作用是将数据生成为一个10位的一个整数值。</p> <hr> <p>组合索引注意事项：
+当包含多个列作为索引，需要注意的是，正确的顺序依赖于该索引的查询，同时需要考虑如何更好的满足排序和分组的需要</p> <div class="language- extra-class"><pre><code>在组合索引中，如果使用了or,不管你是否符合最左匹配原则，都不走索引，但是也有特殊情况，如：  
+</code></pre></div><p>特殊情况：如果一个表中，只有a,b,c三个字段，并且，把a,b,c建成了组合索引，那么这个时候，最左匹配原则就会失效。不管你怎么写，都会走索引，但是究竟走的是a,还是b,还是c，就不一定了。
+栗子：
+select *  from table where b=2 and c=3 ,  走的是abc</p> <div class="language- extra-class"><pre><code>select *  from table where  a=1 and  b&gt;2 and c=3  ,只走a的索引
+
+select *  from table where a-1 and b like '%2'  and c=3  ,只走a的索引
+
+select *  from table where a-1 and b like '2%'  and c=3  ，还是只走a
+
+select *  from table where b like '%2'  and c=3 ， 走abc
+
+select *  from table where c=3  ， 走abc
+</code></pre></div><h2 id="​"><a href="#​" class="header-anchor">#</a> ​</h2> <p>在MySQL中，有这么一个列，叫做  Cardinality， 也叫索引基数，使用的是Hyperlog log 这个算法来计算的
+1. 这个值是表式这个索引估算值的个数，既基数。（需要注意的是这个值并不是特别准确的，每执行下命令，这个值可能都会不同）
+2. MyISAM存储引擎与InnoDB存储引擎在NULL上对于Cardinality的计算方式不同
+3. 这个值越大在做表连接的时候，就越有机会选择这个索引。</p> <div class="language- extra-class"><pre><code>Cardinality会为我们优化SQL语句的执行效率，提供重要的参考依据。
+</code></pre></div><p>PS：在redis，ES中都有使用这个</p> <hr> <p>在执行计划中，extra的意思是：包含额外的信息：</p> <div class="language- extra-class"><pre><code>Using filesort :说明mysql无法利用索引进行排序，只能利用排序算法进行排序，会消耗额外的位置。
+
+Using temporary: 建立临时表来保存中间结果，查询完成之后把临时表删除。
+
+Using index： 表示当前查询时使用了索引覆盖。
+
+Using where：使用了where进行条件过滤
+
+Using join buffer：使用连接缓存，情况没有模拟出来.
+
+impossible where : where语句的结果总是false。
+</code></pre></div><hr> <p>索引的选择性：
+索引的选择性是指不重复的索引值和数据表记录总数的比值，范围从1/#T到1之间。
+索引的选择性越高，那么查询的效率就越高，因为选择性更高的索引可以让MySQL在查找的时候过滤更多的行。</p> <hr> <p>优化小细节（工作中可能会用到的）：
+1.当使用索引列进行查询的时候尽量不要使用表达式，把计算放到业务层而不是数据库层。  表达式栗子：  select abc_id from abc where abc_id+= 4
+如果使用了上面栗子的这种表达式，就会使得abc_id这个主键索引失效，从而优化器会 将表中所有行都一一比对，变成类似全表扫描。</p> <div class="language- extra-class"><pre><code>2.尽量使用主键索引，而不是其他索引，因为主键索引不会触发回表查询。
+
+3.使用前缀索引，有时候需要索引很长的字符串，那么这会让索引变得很大然后速度就会很慢，使用某个列开始的部分字符串来作为索引。这样大大的节约索引空间，从而提高索引效率。
+	但这会降低索引的选择性。一般情况下，某个列的前缀的选择性也是足够高的，足以满足查询的性能，但是对应BLOB,TEXT,VARCHAR类型的列，必须要使用前缀索引，
+	因为MySQL不允许索引这些列的完整长度，使用该方法的诀窍在于要选择足够长的前缀以保证较高的选择性，但是也不能过长。
+
+注意！！！ 前缀索引是一种能使索引更小更快的有效方法，但是也有缺点，那就是MySQL无法使用前缀索引做order by 和 group by 查询。
+
+       栗子：可以看到在下图中，列中的数据长度不一，有的非常长，而有的又很短，如果全部都完整储存，那么就会导致索引太大而浪费空间。
+			
+			图片1	
+
+	所以我们可以可以截取部分字符串来作为索引，可是该截取多长的部分来作为索引？这个就需要如同下图一样，做一个测试，当选择某一个长度作为截取，发现返回的数值开始不再改变，那么就选择这个长度来截取。
+
+			图片2	
+
+	然后我们就可以使用语句来创建这个前缀索引： alter table citydemo add index idx_city ( city (7) );
+
+
+4.使用索引扫描来排序 (公司中用的非常多)：
+	mysql有两种方式可以生成有序的结果，通过排序操作或者按照索引顺序扫描，如果explain的type列的值为index，则说明mysql使用了索引扫描来做排序（不要和extra列的Using index搞混了，那个是使用了覆盖索引查询）。
+	扫描索引本身是很快的，因为只需要从一条索引记录移动到紧接着的下一条记录，但如果索引不能覆盖查询所需的全部列，那就不得不扫描一条索引记录就回表查询一次对应的整行，这基本上都是随机IO，因此按索引顺序读取数据的速度通常要比顺序地全表扫描慢，尤其是在IO密集型的工作负载时。
+
+	mysql可以使用同一个索引既满足排序，又用于查找行，因此，如果可能，设计索引时应该尽可能地同时满足这两种任务，这样是最好的。
+	只有当索引的列顺序和order by子句的顺序完全一致，并且所有列的排序方向（倒序或升序，创建索引时可以指定ASC或DESC）都一样时，mysql才能使用索引来对结果做排序，如果查询需要关联多张表，则只有当order by子句引用的字段全部为第一个表时，才能使用索引做排序，order by子句和查找型查询的限制是一样的，需要满足索引的最左前缀的要求，否则mysql都需要执行排序操作，而无法使用索引排序。
+	
+使用栗子来说明：
+	
+	假设现在表里有五个列 ，id为主键索引，a,b,c为组合索引，z为普通索引。
+
+	现在有以下SQL，是否会执行索引扫描来进行排序：
+		explain select a,b  from table  where a =1 order by b,c   |    会使用索引扫描来排序，因为整体使用的是组合索引。
+
+		explain select a,b  from table  where a =1 order by b     |    依然会走组合索引。
+
+		explain select a,b  from table  where a =1 order by c     |    不符合组合索引规则，在Extra中会多出一个 Using filesort，表明没有走索引扫描来排序，而是使用的别的方式。
+
+		explain select a,b  from table  where a &gt;1 order by a,b     |      因为前面变成了范围查询，所以也不走索引扫描来排序
+
+		explain select a,b  from table  where a =1 order by b  desc, z asc     |       不走索引，因为一个是desc，而另一个是asc，必须两者统一才可以走索引扫描来排序。
+</code></pre></div><p>​			
+5.union all , in , or 都能够使用索引，但是推荐使用in。  （为什么？）...</p> <div class="language- extra-class"><pre><code>        栗子：
+	explain select * from table where table_id =1 union all select * from table where table_id =2      ;
+
+	explain select * from table where table_id  in ( 1，2)       ；
+
+	explain select * from table where table_id =1 or  table_id=2      ;
+
+
+	以上三条sql都会走索引，但是为什么推荐使用 In 呢。
+
+	1.union all的执行是分两步，所以效率肯定是不如 in  和  or 的
+
+	2，or 的使用条件比较苛刻，必须是单例索引才有效，组合索引是无效的，是不会走索引的。
+	
+	所以说推荐使用  in  。
+
+6.范维列可以用到索引，
+	范围的条件是：&lt; , &lt;= , &gt; , &gt;= ，between
+
+	范围列可以用到索引，但是范围列后面的列无法用到索引，索引最多用于一个范围列  
+
+7.强制类型转换会导致全表扫描。
+
+       栗子：
+	explain select * from table where name = &quot;zhansan&quot;    ,走索引
+
+	explain select * from table where name = 123  ， 填写类型不对会导致触发强制类型转换，把123转换成字符串，然后全表扫描。
+
+8.更新十分频繁，数据区分度不高的字段上不宜建立索引。
+	1.更新会变更B+树，更新频繁的字段建立索引会大大降低数据库性能。
+
+	2.类似于性别这类区分不大的属性，建立索引是没有意义的，因为并不能有效地过滤数据。     例如  ：   性别列，因为只有男/女两个选项
+
+	3.一般区分度在80%以上的时候就可以建立索引，区分度可以使用 count( distinct(列名)） /  count(*) 来计算。
+
+9.创建索引的列，不允许为null，可能会得到不符合预期的结果。
+
+10.当需要进行表连接的时候，最好不要超过三张表，因为需要 join 的字段，数据类型必须一致 （阿里禁止：  使用join连接不得超过三张表）
+
+11.能使用Limit    ，  就尽量使用limit
+
+12.单表索引建议控制在5个以内
+
+13.单索引字段数不允许超过5个（组合索引）
+
+14.创建索引的时候应该避免一下错误概念：
+	1.索引越多越好
+
+	2。过早优化，在不了解系统的情况下进行优化
+</code></pre></div><hr> <p>索引监控：
+show  status  like  &quot; Handler_read% &quot;;</p> <div class="language- extra-class"><pre><code>参数解释：
+	1.Handler_read_first：读取索引第一个条目的次数。
+
+	2.Handler_read_key：通过index获取数据的次数。
+
+	3.Handler_read_last：读取索引最后一个条目的次数.
+
+	4.Handler_read_next：通过索引读取下一条数据的次数。
+
+	5.Handler_read_prev：通过索引读取上一条数据的次数。
+
+	6.Handler_read_rnd：从固定位置读取数据的次数.
+
+	7.Handler_read_rnd_next：从数据节点读取下一条数据的次数。
+</code></pre></div><hr> <p>PS:数据库优化要慎重，有两种方式，一种基于CBO(基于成本)，一种是RBO(基于规则)，而现在一般都是CBO，优化规则非常复杂，里面有非常多的条件来判断并最终选择。</p></div></div> <!----> <div class="page-edit"><div class="edit-link"><a href="https://github.com/SaulJWu/SaulJWu.github.io/edit/master/docs/60.更多/01.面试题/54.MySql底层.md" target="_blank" rel="noopener noreferrer">帮我改善此页面</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="tags"><a href="/tags/?tag=%E9%9D%A2%E8%AF%95%E9%A2%98" title="标签">#面试题</a><a href="/tags/?tag=mysql" title="标签">#mysql</a><a href="/tags/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93" title="标签">#数据库</a></div> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2021/11/13, 02:18:16</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/pages/d4ed11/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">MySQL 基础</div></a> <a href="/pages/d6f511/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">Github Actions自动部署</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/pages/d4ed11/" class="prev">MySQL 基础</a></span> <span class="next"><a href="/pages/d6f511/">Github Actions自动部署</a>→
+      </span></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/archives/" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/pages/e1cdbd/"><div>zabbix学习笔记二</div></a> <span>02-28</span></dt></dl><dl><dd>02</dd> <dt><a href="/pages/dc853a/"><div>zabbix学习笔记一</div></a> <span>02-10</span></dt></dl><dl><dd>03</dd> <dt><a href="/pages/12488f/"><div>Linux访问不了github</div></a> <span>12-08</span></dt></dl> <dl><dd></dd> <dt><a href="/archives/" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><div class="icons"><a href="mailto:Saul.J.Wu@outlook.com" title="发邮件" target="_blank" class="iconfont icon-youjian"></a><a href="https://github.com/SaulJWu" title="GitHub" target="_blank" class="iconfont icon-github"></a></div> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+    | Copyright © 2020-2022
+    <span>Saul.J.Wu | <a href="https://github.com/xugaoyi/vuepress-theme-vdoing/blob/master/LICENSE" target="_blank">MIT License</a></span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <!----> <!----> <!----></div><div class="global-ui"><div></div></div></div>
+    <script src="/assets/js/app.5deb200c.js" defer></script><script src="/assets/js/2.325951e6.js" defer></script><script src="/assets/js/221.183ba8fb.js" defer></script>
+  </body>
+</html>
